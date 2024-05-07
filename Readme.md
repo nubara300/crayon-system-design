@@ -15,8 +15,8 @@ Crayon operates two types of sales businesses: Channel and Direct. Direct custom
 - Billing information is retrieved from the CCP, segmented by end-customers and services.
 
 ## High level architecture
-![Image Description](./resources/WebApiFlow.png)
-![Image Description](./resources/WebPortalFlow.png)
+![Image Description](./Resources/WebApiFlow.png)
+![Image Description](./Resources/WebPortalFlow.png)
 
 
 ## Key Services
@@ -49,7 +49,7 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **External Log Service**: Optional integration with services like Betterstack or DataDog for enhanced logging capabilities, monitoring, and reporting.
 
 #Deep dive to order service
-![Image Description](./resources/DeepDiveOrderFlow.png)
+![Image Description](./Resources/DeepDiveOrderFlow.png)
 
 ## Data Model
 ### Customer
@@ -112,7 +112,7 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **InvoiceDate**: Date when the invoice was generated.
 
 
-![Image Description](./resources/DBScheme.png)
+![Image Description](./Resources/DBScheme.png)
 
 
 ## Future improvments
