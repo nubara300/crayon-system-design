@@ -1,0 +1,120 @@
+package "Customer Flow System" {
+    package "Customer Access" {
+        [Customers]
+        [Web Portal]
+        [Web API]
+        
+        [Customers] --> [Web Portal] : Access
+        [Customers] --> [Web API] : Access
+    }
+    
+    package "Web Portal Flow" {
+        package "Customer Login" {
+            [Angular Frontend] as AF
+            [Azure Traffic Manager] as TM
+            [Azure API Gateway] as AG
+            [Authentication Service] as AS
+            
+            TM --> AF : Access
+            AF --> AG : Login request
+            AG --> AS : Authenticate
+            AS --> AG : Authorization
+        }
+        
+        package "Service Ordering" {
+            [Angular Frontend] as AF2
+            [Azure API Gateway] as AG2
+            [.NET Web API] as API
+            [Azure SQL Server] as SQL
+            [Azure Functions] as Func
+            
+            AF2 --> AG2 : Order request
+            AG2 --> API : Route request
+            API --> SQL : Update database
+            API --> Func : Generate invoice
+        }
+    }
+    
+}
+
+package "Customer Flow System" {
+    package "Customer Access" {
+        [Customers]
+        [Web Portal]
+        [Web API]
+        
+        [Customers] --> [Web Portal] : Access
+        [Customers] --> [Web API] : Access
+    }
+    
+    package "Web API Flow" {
+        package "Authentication and Authorization" {
+            [External Systems] as ES
+            [Azure API Gateway] as AG3
+            [API Keys/OAuth] as Auth
+            
+            ES --> AG3 : Access
+            AG3 --> Auth : Authenticate
+            Auth --> AG3 : Authorization
+        }
+        
+        package "Service Integration" {
+            [External Systems] as ES2
+            [Azure API Gateway] as AG4
+            [.NET Web API] as API2
+            [Azure SQL Server] as SQL2
+            [Redis Cache] as Cache
+            
+            ES2 --> AG4 : Request
+            AG4 --> API2 : Route request
+            API2 --> SQL2 : Interact
+            API2 --> Cache : Interact
+        }
+        
+        package "Invoice Generation" {
+            [Azure Functions] as Func2
+            [Cloud Computing Provider's API] as API3
+            [Azure SQL Server] as SQL3
+            
+            Func2 --> API3 : Retrieve information
+            Func2 --> SQL3 : Create invoice
+        }
+        
+        package "Logging and Monitoring" {
+            [Azure Log Analytics] as Analytics
+            [External Log Service] as Logs
+            
+            ES2 --> Analytics : Log
+            ES2 --> Logs : Log
+        }
+    }
+}
+
+@startuml
+package "Customer Flow System" {
+    [Customer] as C
+    [AccountManagmentService] as AMS
+    [OrderService] as OS
+    [InvoiceService] as IS
+    [TicketService] as TS
+    [DocumentGeneratorService] as DG
+    [EmailService] as ES
+    [Database] as DB
+    [CloudProviderService] as CCP
+    [LoggingService] as LS
+     
+    C --> AMS : Manage account
+    C --> OS : Place order
+    C --> IS : Generate invoice
+    C --> TS : Raise ticket
+    
+    OS --> LS
+    CCP --> LS
+    ES --> LS
+
+    OS --> CCP : Query order provider
+    CCP --> DG : Generate invoice
+    CCP --> DB : Save invoice
+    DG --> ES : Send invoice to mail
+}
+@enduml
