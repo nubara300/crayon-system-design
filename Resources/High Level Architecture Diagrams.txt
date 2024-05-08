@@ -83,9 +83,10 @@ package "Customer Flow System" {
         package "Logging and Monitoring" {
             [Azure Log Analytics] as Analytics
             [External Log Service] as Logs
-            
-            ES2 --> Analytics : Log
-            ES2 --> Logs : Log
+
+            AG4 --> Analytics : Log
+            API2 --> Analytics : Log
+            API2 --> Logs : Log
         }
     }
 }

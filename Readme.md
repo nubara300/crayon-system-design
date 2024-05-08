@@ -14,11 +14,6 @@ Crayon operates two types of sales businesses: Channel and Direct. Direct custom
 - The CCP provides a service catalogue with available services and purchase prices.
 - Billing information is retrieved from the CCP, segmented by end-customers and services.
 
-## High level architecture
-![Image Description](./Resources/WebApiFlow.png)
-![Image Description](./Resources/WebPortalFlow.png)
-
-
 ## Key Services
 
 - **Azure Traffic Manager**: Azure Traffic Manager is utilized to distribute incoming traffic across multiple regions, ensuring low-latency access for customers globally. It enables high availability and fault tolerance by automatically rerouting traffic from unhealthy endpoints.
@@ -46,10 +41,17 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 ## Analytics and Logs
 
 - **Azure Log Analytics**: Utilized for centralized logging, monitoring, and analysis of system performance and health.
-- **External Log Service**: Optional integration with services like Betterstack or DataDog for enhanced logging capabilities, monitoring, and reporting.
+- **External Log Service**: Optional integration with services like Betterstack([text](https://betterstack.com/logs)) or DataDog([text](https://docs.datadoghq.com/logs/)) for enhanced logging capabilities, monitoring, and reporting.
+
+## High level architecture
+![Image Description](./resources/OverviewHLA.png)
+
+## Web portal and system integration flow
+![Image Description](./resources/WebApiFlow.png)
+![Image Description](./resources/WebPortalFlow.png)
 
 #Deep dive to order service
-![Image Description](./Resources/DeepDiveOrderFlow.png)
+![Image Description](./resources/DeepDiveOrderFlow.png)
 
 ## Data Model
 ### Customer
@@ -58,12 +60,13 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **Name**: Name of the customer.
 - **Email**: Email address of the customer.
 - **Type**: Type of customer (e.g., Channel, Direct).
-#### fields are common to all models
+*These fields are common to most of the models*
 - **RowVersion**: Version control for data integrity.
 - **CreatedBy**: User who created the record.
 - **ModifiedBy**: User who last modified the record.
 - **DateCreated**: Date and time when the record was created.
 - **DateModified**: Date and time when the record was last modified.
+- **IsDeleted**: Flag indicating if the record has been deleted.
 
 ### Account
 
@@ -72,7 +75,6 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **AccountName**: Name of the account.
 - **Email**: Email address associated with the account.
 
-
 ### Service
 
 - **ServiceID**: Unique identifier for the service.
@@ -80,13 +82,11 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **ExpirationDate**: Date when the service expires.
 - **State**: State of the service (e.g., Active, Inactive).
 
-
 ### Licence
 
 - **LicenceID**: Unique identifier for the licence.
 - **LicenceKey**: Key associated with the licence.
 - **ServiceID**: Identifier for the associated service.
-
 
 ### AccountSubscription
 
@@ -103,7 +103,6 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **AccountID**: Identifier for the associated account.
 - **OrderDate**: Date when the order was placed.
 
-
 ### Invoice
 
 - **InvoiceID**: Unique identifier for the invoice.
@@ -111,8 +110,12 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **Amount**: Total amount of the invoice.
 - **InvoiceDate**: Date when the invoice was generated.
 
+## DB Scheme (sql included in resources folder)
+![Image Description](./resources/DBScheme.png)
 
-![Image Description](./Resources/DBScheme.png)
 
-
-## Future improvments
+## Future improvements
+- Implement a queue service for orders to enhance resilience during failures.
+- Integrate an identity provider for improved security and access control.
+- Utilize HTTP Azure Functions for efficient document generation and storage.
+- Enhance logging and tracking for comprehensive analytics and insights.
