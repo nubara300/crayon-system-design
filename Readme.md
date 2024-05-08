@@ -4,7 +4,7 @@ Crayon aims to implement a cloud sales solution to cater to customers in Europe 
 
 ## Business Model
 
-Crayon operates two types of sales businesses: Channel and Direct. Direct customers purchase and utilize software directly from Crayon, while re-sellers buy software from Crayon to sell to their customers (end-customers). End-customers can set up management accounts to access services, with each account capable of running multiple services.
+Crayon operates two types of sales businesses: Channel and Direct. Direct customers purchase and utilize software directly from Crayon, while re-sellers buy software from Crayon to sell to their customers (end-customers). End-customers can set up management accounts to access services, with each account capable of subscribing to multiple services.
 
 ## Data Model
 
@@ -34,7 +34,7 @@ Crayon operates two types of sales businesses: Channel and Direct. Direct custom
 
 - **Background Workers**: Background Workers are employed for asynchronous processing of tasks such as invoice generation and support case handling. They offload time-consuming operations from the main application thread, ensuring smooth and responsive user experience.
 
-## Scaling Strategy
+## Scaling Strategy ([text](https://kubernetes.io/))
 
 Kubernetes is employed for scaling the system. It dynamically adjusts resources based on demand, ensuring optimal performance and resource utilization. Horizontal and vertical scaling techniques are utilized to handle fluctuations in workload effectively.
 
@@ -44,14 +44,14 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **External Log Service**: Optional integration with services like Betterstack([text](https://betterstack.com/logs)) or DataDog([text](https://docs.datadoghq.com/logs/)) for enhanced logging capabilities, monitoring, and reporting.
 
 ## High level architecture
-![Image Description](./resources/OverviewHLA.png)
+![Image Description](./Resources/OverviewHLA.png)
 
 ## Web portal and system integration flow
-![Image Description](./resources/WebApiFlow.png)
-![Image Description](./resources/WebPortalFlow.png)
+![Image Description](./Resources/WebApiFlow.png)
+![Image Description](./Resources/WebPortalFlow.png)
 
 #Deep dive to order service
-![Image Description](./resources/DeepDiveOrderFlow.png)
+![Image Description](./Resources/DeepDiveOrderFlow.png)
 
 ## Data Model
 ### Customer
@@ -111,7 +111,7 @@ Kubernetes is employed for scaling the system. It dynamically adjusts resources 
 - **InvoiceDate**: Date when the invoice was generated.
 
 ## DB Scheme (sql included in resources folder)
-![Image Description](./resources/DBScheme.png)
+![Image Description](./Resources/DBScheme.png)
 
 
 ## Future improvements
