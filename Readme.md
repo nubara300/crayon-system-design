@@ -34,14 +34,14 @@ Crayon operates two types of sales businesses: Channel and Direct. Direct custom
 
 - **Background Workers**: Background Workers are employed for asynchronous processing of tasks such as invoice generation and support case handling. They offload time-consuming operations from the main application thread, ensuring smooth and responsive user experience.
 
-## Scaling Strategy ([text](https://kubernetes.io/))
+## Scaling Strategy ([Kubernetes](https://kubernetes.io/))
 
 Kubernetes is employed for scaling the system. It dynamically adjusts resources based on demand, ensuring optimal performance and resource utilization. Horizontal and vertical scaling techniques are utilized to handle fluctuations in workload effectively.
 
 ## Analytics and Logs
 
 - **Azure Log Analytics**: Utilized for centralized logging, monitoring, and analysis of system performance and health.
-- **External Log Service**: Optional integration with services like Betterstack([text](https://betterstack.com/logs)) or DataDog([text](https://docs.datadoghq.com/logs/)) for enhanced logging capabilities, monitoring, and reporting.
+- **External Log Service**: Optional integration with services like Betterstack([Betterstack](https://betterstack.com/logs)) or DataDog([DataDog](https://docs.datadoghq.com/logs/)) for enhanced logging capabilities, monitoring, and reporting.
 
 ## High level architecture
 ![Image Description](./Resources/OverviewHLA.png)
